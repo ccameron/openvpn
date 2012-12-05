@@ -71,6 +71,14 @@ file "#{key_dir}/index.txt" do
   action :create
 end
 
+if node["openvpn"]["client_config_dir"]
+  directory "/etc/openvpn/server/ccd" do
+    owner "root"
+    group "root"
+    mode 0644
+  end
+end
+
 file "#{key_dir}/serial" do
   content "01"
   not_if { ::File.exists?("#{key_dir}/serial") }
