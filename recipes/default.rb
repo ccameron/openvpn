@@ -72,10 +72,18 @@ file "#{key_dir}/index.txt" do
 end
 
 if node["openvpn"]["client_config_dir"]
+  directory "/etc/openvpn/server" do
+    owner "root"
+    group "root"
+    mode 0644
+    recursive true
+  end
+
   directory "/etc/openvpn/server/ccd" do
     owner "root"
     group "root"
     mode 0644
+    recursive true
   end
 end
 
