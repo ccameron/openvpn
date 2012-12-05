@@ -29,6 +29,10 @@ dh   /etc/openvpn/keys/dh<%= node["openvpn"]["key"]["size"] %>.pem
 client-config-dir /etc/openvpn/server/ccd
 <% end %>
 
+<% if node["openvpn"]["client_to_client"] %>
+client-to-client
+<% end %>
+
 ifconfig-pool-persist /etc/openvpn/ipp.txt
 
 <% if node["openvpn"]["type"] == "server" -%>
